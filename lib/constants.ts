@@ -35,32 +35,32 @@ export type Experience = {
 };
 
 export const experiences: Experience[] = [
-	{
-		title: 'Engineering Intern',
-		company: 'Tech Company',
-		location: 'City, Country',
-		startDate: 'May 2023',
-		endDate: 'Aug 2023',
-		description: [
-			'Worked on developing and testing software components for embedded systems',
-			'Collaborated with senior engineers on project planning and execution',
-			'Implemented test procedures for quality assurance',
-		],
-		technologies: ['C++', 'Python', 'MATLAB', 'Git'],
-	},
-	{
-		title: 'Research Assistant',
-		company: 'University Lab',
-		location: 'City, Country',
-		startDate: 'Jan 2023',
-		endDate: 'Apr 2023',
-		description: [
-			'Assisted in research focusing on advanced materials for mechanical applications',
-			'Conducted literature reviews and compiled research findings',
-			'Performed data analysis and visualization of experimental results',
-		],
-		technologies: ['MATLAB', 'CAD', 'Data Analysis', 'Python'],
-	},
+    {
+        title: 'Merchandiser',
+        company: 'LANCO',
+        location: 'Chile',
+        startDate: 'Oct 2022',
+        endDate: 'May 2025',
+        description: [
+            'Managed replenishment and inventory control using precision and traceability criteria.',
+            'Coordinated orders and purchase requests through digital tools.',
+            'Maintained effective communication with clients and work teams, strengthening organizational skills.',
+        ],
+        technologies: ['Digital Inventory Tools', 'Logistics Management'],
+    },
+    {
+        title: 'Technical Support in Equipment and Networks',
+        company: 'KONECTA',
+        location: 'Chile',
+        startDate: 'Dec 2021',
+        endDate: 'Mar 2022',
+        description: [
+            'Diagnosed and resolved failures in computer equipment, networks, and telecommunications systems.',
+            'Configured IP connections in Windows environments.',
+            'Provided remote support via AnyDesk, including software installation, malware removal, and system optimization.',
+        ],
+        technologies: ['Windows', 'Networking', 'AnyDesk', 'Hardware Troubleshooting'],
+    },
 ];
 
 export type Project = {
