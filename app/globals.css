@@ -123,3 +123,19 @@
     @apply bg-background text-foreground;
   }
 }
+
+@layer utilities {
+  .glass {
+    @apply bg-background/60 backdrop-blur-xl border border-border/60 shadow-sm;
+  }
+
+  .apple-card {
+    @apply rounded-2xl border border-border/60 bg-card/70 backdrop-blur-xl shadow-sm transition-transform;
+  }
+
+  .soft-grid {
+    background-image: radial-gradient(circle at 1px 1px, color-mix(in oklch, var(--foreground) 12%, transparent) 1px, transparent 0);
+    background-size: 28px 28px;
+    opacity: 0.25;
+  }
+}

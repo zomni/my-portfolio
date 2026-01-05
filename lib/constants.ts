@@ -1,55 +1,27 @@
 export const siteConfig = {
-	name: 'Engineering Portfolio',
-	description:
-		'A professional portfolio website template for engineering students.',
-	mainNav: [
-		{
-			title: 'Home',
-			href: '/',
-		},
-		{
-			title: 'About',
-			href: '/about',
-		},
-		{
-			title: 'Education',
-			href: '/education',
-		},
-		{
-			title: 'Skills',
-			href: '/skills',
-		},
-		{
-			title: 'Experience',
-			href: '/experience',
-		},
-		{
-			title: 'Projects',
-			href: '/projects',
-		},
-		{
-			title: 'Certificates',
-			href: '/certificates',
-		},
-		{
-			title: 'Blog',
-			href: '/blog',
-		},
-		{
-			title: 'Contact',
-			href: '/contact',
-		},
-	],
-	links: {
-		github: 'https://github.com/yourusername',
-		linkedin: 'https://linkedin.com/in/yourusername',
-		twitter: 'https://twitter.com/yourusername',
-		facebook: 'https://facebook.com/yourusername',
-		instagram: 'https://instagram.com/yourusername',
-		whatsapp: 'https://wa.me/yourphonenumber',
-		email: 'mailto:youremail@example.com',
-		phone: 'tel:+1234567890',
-	},
+    name: 'Paolo Vilches Serrano',
+    description:
+        'Computer Engineering student with a solid background in technical support, databases, and software development.',
+    mainNav: [
+        { title: 'Home', href: '/' },
+        { title: 'About', href: '/about' },
+        { title: 'Education', href: '/education' },
+        { title: 'Skills', href: '/skills' },
+        { title: 'Experience', href: '/experience' },
+        { title: 'Projects', href: '/projects' },
+        { title: 'Certificates', href: '/certificates' },
+        { title: 'Contact', href: '/contact' },
+    ],
+    links: {
+        github: 'https://github.com/zomni',
+        linkedin: 'https://linkedin.com/in/paolo-vilches',
+        twitter: '', 
+        facebook: '',
+        instagram: '',
+        whatsapp: 'https://wa.me/56996742085',
+        email: 'mailto:paolovilches@hotmail.com',
+        phone: 'tel:+56996742085',
+    },
 };
 
 export type Experience = {
@@ -142,34 +114,29 @@ export type Education = {
 };
 
 export const education: Education[] = [
-	{
-		degree: 'Bachelor of Science',
-		field: 'Mechanical Engineering',
-		institution: 'University Name',
-		location: 'City, Country',
-		startDate: 'Sep 2020',
-		endDate: 'Present',
-		gpa: '3.8/4.0',
-		achievements: [
-			'Dean\'s List (All Semesters)',
-			'Academic Excellence Scholarship',
-			'Senior Design Project Award',
-		],
-	},
-	{
-		degree: 'High School Diploma',
-		field: 'Science and Mathematics',
-		institution: 'High School Name',
-		location: 'City, Country',
-		startDate: 'Sep 2016',
-		endDate: 'Jun 2020',
-		gpa: '4.0/4.0',
-		achievements: [
-			'Valedictorian',
-			'National Mathematics Competition Finalist',
-			'Science Fair Gold Medal',
-		],
-	},
+    {
+        degree: 'Bachelor of Computer Engineering',
+        field: 'Computer Science',
+        institution: 'DuocUC',
+        location: 'Chile',
+        startDate: 'Mar 2023',
+        endDate: 'Present',
+        achievements: [
+            'Focus on technical objective fulfillment and continuous learning.',
+            'Developing advanced skills in software architecture and databases.',
+        ],
+    },
+    {
+        degree: 'Civil Informatics and Telecommunications Engineering',
+        field: 'Engineering',
+        institution: 'Universidad Diego Portales',
+        location: 'Chile',
+        startDate: '2021',
+        endDate: '2022',
+        achievements: [
+            'Foundational studies in computer systems and network infrastructure.',
+        ],
+    },
 ];
 
 export type Certificate = {
@@ -216,65 +183,27 @@ export type Skill = {
 
 export const skills: Skill[] = [
 	// Technical Skills
-	{ name: 'Mechanical Design', level: 9, category: 'technical' },
-	{ name: 'Structural Analysis', level: 8, category: 'technical' },
-	{ name: 'Thermodynamics', level: 7, category: 'technical' },
-	{ name: 'Control Systems', level: 8, category: 'technical' },
-	{ name: 'Circuit Design', level: 6, category: 'technical' },
+	{ name: 'Node.js (Express)', level: 8, category: 'software' },
+    { name: 'Java (Spring Boot)', level: 7, category: 'software' },
+    { name: 'Angular', level: 8, category: 'software' },
+    { name: 'Ionic', level: 7, category: 'software' },
+    { name: 'MySQL / Oracle PL/SQL', level: 8, category: 'software' },
+    { name: 'Firebase', level: 7, category: 'software' },
+    { name: 'Git / GitHub', level: 9, category: 'software' },
+    { name: 'Postman / Selenium', level: 7, category: 'software' },
+    
+    // Technical Skills
+    { name: 'RESTful APIs', level: 8, category: 'technical' },
+    { name: 'Network Diagnostics', level: 8, category: 'technical' },
+    { name: 'Technical Support', level: 9, category: 'technical' },
+    { name: 'Data Analysis (Excel/Colab)', level: 7, category: 'technical' },
 
-	// Software Skills
-	{ name: 'MATLAB', level: 9, category: 'software' },
-	{ name: 'AutoCAD', level: 8, category: 'software' },
-	{ name: 'SolidWorks', level: 9, category: 'software' },
-	{ name: 'Python', level: 7, category: 'software' },
-	{ name: 'C++', level: 6, category: 'software' },
-	{ name: 'ANSYS', level: 8, category: 'software' },
-
-	// Soft Skills
-	{ name: 'Problem Solving', level: 9, category: 'soft' },
-	{ name: 'Team Leadership', level: 8, category: 'soft' },
-	{ name: 'Project Management', level: 7, category: 'soft' },
-	{ name: 'Technical Writing', level: 8, category: 'soft' },
-	{ name: 'Presentation', level: 7, category: 'soft' },
-
+    // Soft Skills
+    { name: 'Problem Solving', level: 9, category: 'soft' },
+    { name: 'Attention to Detail', level: 9, category: 'soft' },
+    { name: 'Collaborative Work', level: 8, category: 'soft' },
+    { name: 'Agile Methodologies', level: 7, category: 'soft' },
 	// Languages
 	{ name: 'English', level: 10, category: 'language' },
 	{ name: 'Spanish', level: 6, category: 'language' },
-	{ name: 'French', level: 4, category: 'language' },
-];
-
-export type BlogPost = {
-	title: string;
-	excerpt: string;
-	date: string;
-	author: string;
-	image: string;
-	slug: string;
-};
-
-export const blogPosts: BlogPost[] = [
-	{
-		title: 'Advances in Renewable Energy Technologies',
-		excerpt: 'Exploring the latest innovations in renewable energy and their impact on sustainable development.',
-		date: 'Mar 15, 2024',
-		author: 'Your Name',
-		image: 'https://images.pexels.com/photos/2800832/pexels-photo-2800832.jpeg',
-		slug: 'advances-in-renewable-energy',
-	},
-	{
-		title: 'The Future of Robotics in Manufacturing',
-		excerpt: 'How robotics and automation are revolutionizing the manufacturing industry and creating new opportunities.',
-		date: 'Feb 22, 2024',
-		author: 'Your Name',
-		image: 'https://images.pexels.com/photos/3861969/pexels-photo-3861969.jpeg',
-		slug: 'future-of-robotics-manufacturing',
-	},
-	{
-		title: 'Sustainable Building Materials in Modern Construction',
-		excerpt: 'An analysis of eco-friendly building materials and their applications in contemporary architecture.',
-		date: 'Jan 10, 2024',
-		author: 'Your Name',
-		image: 'https://images.pexels.com/photos/2219024/pexels-photo-2219024.jpeg',
-		slug: 'sustainable-building-materials',
-	},
 ];
