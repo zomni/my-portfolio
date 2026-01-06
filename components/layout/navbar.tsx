@@ -15,6 +15,8 @@ import {
   SheetContent,
   SheetTrigger,
   SheetClose,
+  SheetTitle,
+  SheetDescription,
 } from "@/components/ui/sheet";
 
 // ThemeToggle solo cliente
@@ -83,8 +85,21 @@ export default function Navbar() {
     >
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4">
         {/* Brand */}
-        <Link href="/" className="font-semibold tracking-tight">
-          Portfolio
+        <Link href="/" className="flex items-center space-x-2">
+          <motion.div
+            whileHover={{ scale: 1.05 }}
+            className="
+              font-bold text-2xl
+              bg-gradient-to-r
+              from-foreground
+              via-primary
+              to-[#F7B801]
+              bg-clip-text
+              text-transparent
+            "
+          >
+            Portfolio
+          </motion.div>
         </Link>
 
         {/* Desktop nav */}
@@ -95,23 +110,35 @@ export default function Navbar() {
           {items.map((item) => {
             const active = pathname === item.href;
             return (
-              <div key={item.href} className="relative">
+              <div key={item.href} className="relative group">
                 <Link
                   href={item.href}
                   className={cn(
+                    "relative text-sm font-semibold transition-colors",
                     active
                       ? "text-foreground"
-                      : "text-foreground/70 hover:text-foreground/90"
+                      : "text-foreground/70 hover:text-foreground"
                   )}
                 >
                   {labels[lang][item.key]}
                 </Link>
 
+                {/* underline hover sutil */}
+                <span
+                  className={cn(
+                    "pointer-events-none absolute left-0 right-0 -bottom-2 h-[2px] rounded-full",
+                    "bg-[#F7B801]/0 transition-colors duration-200",
+                    !active && "group-hover:bg-[#F7B801]/70"
+                  )}
+                />
+
+                {/* underline activo animado */}
                 <AnimatePresence>
                   {active && (
                     <motion.span
                       layoutId="nav-underline"
-                      className="absolute left-0 right-0 -bottom-2 h-[2px] rounded-full bg-primary"
+                      className="absolute left-0 right-0 -bottom-2 h-[2px] rounded-full bg-[#F7B801]"
+                      transition={{ type: "spring", stiffness: 500, damping: 30 }}
                     />
                   )}
                 </AnimatePresence>
@@ -143,10 +170,12 @@ export default function Navbar() {
                 </Button>
               </SheetTrigger>
 
-              <SheetContent
-                side="right"
-                className="glass w-[280px] p-6"
-              >
+              <SheetContent side="right" className="glass w-[280px] p-6">
+                <SheetTitle className="sr-only">Navigation menu</SheetTitle>
+                <SheetDescription className="sr-only">
+                  Mobile navigation links and actions.
+                </SheetDescription>
+
                 <div className="flex flex-col gap-6">
                   <div className="text-sm font-semibold tracking-tight">
                     Menu

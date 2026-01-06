@@ -1,72 +1,84 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight, FileDown } from "lucide-react";
 import * as THREE from "three";
-import NET from "vanta/dist/vanta.net.min";
 
 import { Button } from "@/components/ui/button";
 import { fadeIn, stagger } from "@/lib/motion";
 
 export default function HeroSection() {
-  const [vanta, setVanta] = useState<ReturnType<typeof NET> | null>(null);
   const vantaRef = useRef<HTMLDivElement>(null);
 
+  type VantaEffect = { destroy: () => void };
+  const vantaEffect = useRef<VantaEffect | null>(null);
+
   useEffect(() => {
-    if (!vanta && vantaRef.current) {
-      setVanta(
-        NET({
-          el: vantaRef.current,
-          THREE,
-          mouseControls: true,
-          touchControls: true,
-          gyroControls: false,
+    let cancelled = false;
 
-          // “Apple-ish”: menos ruido visual
-          points: 8.0,
-          maxDistance: 22.0,
-          spacing: 26.0,
-          showDots: false,
+    const init = async () => {
+      if (!vantaRef.current || vantaEffect.current) return;
 
-          // escala más “suave”
-          scale: 1.0,
-          scaleMobile: 1.0,
+      const BirdsModule = await import("vanta/dist/vanta.birds.min");
+      const BIRDS = BirdsModule.default;
 
-          // rojo sutil + fondo muy oscuro
-          color: 0xef4444,           // red-500
-          backgroundColor: 0x0b0b10,  // casi negro azulado
-        })
-      );
-    }
+      if (cancelled || !vantaRef.current) return;
+
+      vantaEffect.current = BIRDS({
+        el: vantaRef.current,
+        THREE,
+        mouseControls: true,
+        touchControls: true,
+        gyroControls: false,
+        minHeight: 200.0,
+        minWidth: 200.0,
+        scale: 1.0,
+        scaleMobile: 1.0,
+        backgroundColor: 0x100007,
+        color1: 0x000000,
+        color2: 0x560bad,
+        birdSize: 0.5,
+        wingSpan: 40.0,
+        speedLimit: 1.0,
+        separation: 100.0,
+        alignment: 100.0,
+        cohesion: 1.0,
+      });
+    };
+
+    init();
 
     return () => {
-      if (vanta) vanta.destroy();
+      cancelled = true;
+      if (vantaEffect.current) {
+        vantaEffect.current.destroy();
+        vantaEffect.current = null;
+      }
     };
-  }, [vanta]);
+  }, []);
 
   return (
     <section className="relative overflow-hidden">
       {/* Vanta */}
-      <div ref={vantaRef} className="absolute inset-0 -z-20 opacity-55" />
+      <div
+        ref={vantaRef}
+        className="absolute inset-0 -z-20"
+        style={{ width: "100%", height: "100%" }}
+      />
 
-      {/* Overlays Apple (para glass + limpieza visual) */}
+      {/* Overlays */}
       <div className="absolute inset-0 -z-10">
-        {/* grid sutil */}
         <div className="absolute inset-0 soft-grid" />
-
-        {/* glow rojo suave */}
         <div
-          className="absolute inset-0 opacity-70"
+          className="absolute inset-0 opacity-35"
           style={{
             background:
-              "radial-gradient(900px circle at 50% 35%, rgba(239,68,68,0.14), transparent 60%)",
+              "radial-gradient(900px circle at 50% 35%, rgba(86,11,173,0.18), transparent 60%)",
           }}
         />
-
-        {/* viñeta ligera para “profundidad” */}
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-background/60" />
+        <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-background/40 to-transparent" />
       </div>
 
       {/* Content */}
@@ -79,22 +91,60 @@ export default function HeroSection() {
         >
           <motion.p
             variants={fadeIn("up", 0)}
-            className="text-sm md:text-base text-primary/90"
+            className="text-base text-3xl md:text-lg lg:text-4xl font-bold mb-4 tracking-wide text-primary"
           >
             Computer Science Engineering Student
           </motion.p>
 
           <motion.h1
             variants={fadeIn("up", 0.06)}
-            className="mt-4 text-4xl md:text-6xl font-semibold tracking-tight"
+            className="mt-4 text-5xl md:text-7xl font-semibold tracking-tight"
           >
-            <span className="text-foreground/95">Paolo Vilches</span>{" "}
-            <span className="text-primary">Portfolio</span>
+            <span
+              className="
+                bg-gradient-to-r
+                from-foreground
+                via-primary
+                to-[#F7B801]
+                bg-clip-text
+                text-transparent
+              "
+            >
+              Paolo
+            </span>{" "}
+            <span
+              className="
+                bg-gradient-to-r
+                from-foreground
+                via-primary
+                to-[#F7B801]
+                bg-clip-text
+                text-transparent
+              "
+            >
+              Vilches
+            </span>{" "}
+            <span
+              className="
+                text-foreground
+                text-white
+                dark:text-muted-foreground
+              "
+            >
+              Portfolio
+            </span>
           </motion.h1>
 
           <motion.p
             variants={fadeIn("up", 0.14)}
-            className="mt-6 text-base md:text-xl text-muted-foreground max-w-2xl mx-auto"
+            className="
+              mt-6
+              text-xl
+              text-base md:text-2xl
+              text-white
+              dark:text-muted-foreground
+              max-w-2xl mx-auto
+            "
           >
             A showcase of my projects, skills, and achievements in the field of engineering.
           </motion.p>

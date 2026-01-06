@@ -1,6 +1,4 @@
-declare module "vanta/dist/vanta.net.min" {
-  import type { Object3D } from "three";
-
+declare module "vanta/dist/vanta.birds.min" {
   type VantaEffect = {
     destroy: () => void;
   };
@@ -15,15 +13,20 @@ declare module "vanta/dist/vanta.net.min" {
     minWidth?: number;
     scale?: number;
     scaleMobile?: number;
-    color?: number;
+
     backgroundColor?: number;
-    points?: number;
-    maxDistance?: number;
-    spacing?: number;
-    showDots?: boolean;
+    color1?: number;
+    color2?: number;
+
+    birdSize?: number;
+    wingSpan?: number;
+    speedLimit?: number;
+    separation?: number;
+    alignment?: number;
+    cohesion?: number;
   };
 
-  function NET(options: VantaOptions): VantaEffect;
+  function BIRDS(options: VantaOptions): VantaEffect;
 
-  export default NET;
+  export default BIRDS;
 }
