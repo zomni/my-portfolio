@@ -1,65 +1,91 @@
 "use client";
 
-import Link from "next/link";
 import { motion } from "framer-motion";
 import { fadeIn } from "@/lib/motion";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { siteConfig } from "@/lib/constants";
+import { Send } from "lucide-react";
 
 export default function ContactPreview() {
   return (
-    <section className="mx-auto max-w-6xl px-4 py-16 md:py-24">
+    <section className="mx-auto max-w-6xl px-4 py-16 md:py-20">
+      {/* Title */}
       <motion.div
+        className="flex flex-col items-center text-center"
         variants={fadeIn("up", 0)}
         initial="hidden"
         whileInView="show"
         viewport={{ once: true, amount: 0.25 }}
       >
-        <Card className="relative overflow-hidden glass">
-          {/* brillo sutil */}
-          <div className="absolute inset-0 -z-10 opacity-40">
-            <div
-              className="absolute -top-20 -right-24 h-[320px] w-[320px] rounded-full blur-3xl"
-              style={{
-                background:
-                  "radial-gradient(circle, rgba(99,102,241,0.35), transparent 60%)",
-              }}
-            />
-            <div
-              className="absolute -bottom-28 -left-20 h-[360px] w-[360px] rounded-full blur-3xl"
-              style={{
-                background:
-                  "radial-gradient(circle, rgba(16,185,129,0.25), transparent 60%)",
-              }}
-            />
-          </div>
-
-          <CardContent className="p-7 md:p-10">
-            <p className="text-xs uppercase tracking-wider text-muted-foreground">
-              Contact
-            </p>
-            <h2 className="mt-3 text-2xl md:text-3xl font-semibold tracking-tight">
-              Want to build something clean?
-            </h2>
-            <p className="mt-3 text-sm md:text-base text-muted-foreground max-w-2xl">
-              Send me a message and tell me what you’re working on. I’m open to
-              collaborations and opportunities.
-            </p>
-
-            <div className="mt-7 flex flex-wrap gap-3">
-              <Button asChild className="rounded-2xl px-6">
-                <Link href="/contact">Go to contact</Link>
-              </Button>
-
-              {/* mailto (cámbialo por tu correo) */}
-              <Button asChild variant="outline" className="rounded-2xl px-6 glass">
-                <a href={siteConfig.links.email}>Email</a>
-              </Button>
-            </div>
-          </CardContent>
-        </Card>
+        <h2 className="text-3xl md:text-4xl font-semibold tracking-tight">
+          Get In Touch
+        </h2>
+        <div className="mt-2 h-1 w-24 rounded-full bg-primary" />
       </motion.div>
+
+      {/* Layout */}
+      <div className="mt-10 grid gap-8 md:grid-cols-12 md:items-start">
+        {/* Left text */}
+        <motion.div
+          className="md:col-span-5 md:pt-4"
+          variants={fadeIn("up", 0.05)}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.25 }}
+        >
+          <p className="max-w-md text-sm md:text-base text-muted-foreground leading-relaxed">
+            Interested in working together or have a question? Feel free to
+            reach out!
+          </p>
+        </motion.div>
+
+        {/* Form */}
+        <motion.div
+          className="md:col-span-7 md:flex md:justify-center"
+          variants={fadeIn("up", 0.1)}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.25 }}
+        >
+          <Card className="glass w-full max-w-xl">
+            <CardContent className="p-6 md:p-7">
+              <form
+                onSubmit={(e) => e.preventDefault()}
+                className="space-y-4"
+              >
+                <div>
+                  <input
+                    type="text"
+                    placeholder="Your Name"
+                    className="h-11 w-full rounded-xl border border-border bg-background/40 px-4 text-sm outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/20"
+                  />
+                </div>
+
+                <div>
+                  <input
+                    type="email"
+                    placeholder="Your Email"
+                    className="h-11 w-full rounded-xl border border-border bg-background/40 px-4 text-sm outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/20"
+                  />
+                </div>
+
+                <div>
+                  <textarea
+                    placeholder="Your Message"
+                    rows={7}
+                    className="w-full resize-none rounded-xl border border-border bg-background/40 px-4 py-3 text-sm outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/20"
+                  />
+                </div>
+
+                <Button type="submit" className="w-full rounded-2xl">
+                  Send Message
+                  <Send className="ml-2 h-4 w-4" />
+                </Button>
+              </form>
+            </CardContent>
+          </Card>
+        </motion.div>
+      </div>
     </section>
   );
 }
