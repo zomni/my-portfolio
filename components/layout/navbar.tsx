@@ -2,7 +2,8 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, useSyncExternalStore } from "react";
+
 import { motion, AnimatePresence } from "framer-motion";
 import dynamic from "next/dynamic";
 import { Menu } from "lucide-react";
@@ -63,6 +64,14 @@ export default function Navbar() {
   const { lang, toggleLang } = useLanguage();
   const [scrolled, setScrolled] = useState(false);
 
+  const isClient = useSyncExternalStore(
+    () => () => {},
+    () => true,
+    () => false,
+  );
+
+  const safeLang = isClient ? lang : "en";
+
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
     onScroll();
@@ -103,10 +112,7 @@ export default function Navbar() {
         </Link>
 
         {/* Desktop nav */}
-        <nav
-          className="hidden md:flex items-center gap-6 text-sm"
-          suppressHydrationWarning
-        >
+        <nav className="hidden md:flex items-center gap-6 text-sm">
           {items.map((item) => {
             const active = pathname === item.href;
             return (
@@ -120,7 +126,7 @@ export default function Navbar() {
                       : "text-foreground/70 hover:text-foreground",
                   )}
                 >
-                  {labels[lang][item.key]}
+                  {labels[safeLang][item.key]}
                 </Link>
 
                 {/* underline hover sutil */}
@@ -160,7 +166,7 @@ export default function Navbar() {
               onClick={toggleLang}
               className="rounded-2xl bg-background/30 border-border/60"
             >
-              {lang === "en" ? "ES" : "EN"}
+              {safeLang === "en" ? "ES" : "EN"}
             </Button>
             <ThemeToggle />
           </div>
@@ -197,7 +203,7 @@ export default function Navbar() {
                               : "text-muted-foreground",
                           )}
                         >
-                          {labels[lang][item.key]}
+                          {labels[safeLang][item.key]}
                         </Link>
                       </SheetClose>
                     ))}
@@ -209,7 +215,7 @@ export default function Navbar() {
                       onClick={toggleLang}
                       className="flex-1 rounded-xl"
                     >
-                      {lang === "en" ? "ES" : "EN"}
+                      {safeLang === "en" ? "ES" : "EN"}
                     </Button>
                     <ThemeToggle />
                   </div>
