@@ -6,6 +6,7 @@ import { fadeIn, stagger } from "@/lib/motion";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { skills, type Skill } from "@/lib/constants";
+import { useTranslation } from "@/hooks/use-translation";
 
 function groupByCategory(list: Skill[]) {
   const groups: Record<Skill["category"], Skill[]> = {
@@ -18,14 +19,9 @@ function groupByCategory(list: Skill[]) {
   return groups;
 }
 
-const categoryLabel: Record<Skill["category"], string> = {
-  technical: "Technical",
-  software: "Software",
-  soft: "Soft Skills",
-  language: "Languages",
-};
-
 export default function SkillsPreview() {
+  const { t } = useTranslation();
+
   const groups = groupByCategory(skills);
 
   // “Apple”: muestra pocas y bien ordenadas
@@ -39,20 +35,27 @@ export default function SkillsPreview() {
     ...pickTop(groups.language, 3),
   ];
 
+  const categoryLabel: Record<Skill["category"], string> = {
+    technical: t("home.skillsPreview.categories.technical"),
+    software: t("home.skillsPreview.categories.software"),
+    soft: t("home.skillsPreview.categories.soft"),
+    language: t("home.skillsPreview.categories.language"),
+  };
+
   return (
     <section className="mx-auto max-w-6xl px-4 py-16 md:py-20">
       <div className="flex items-end justify-between gap-4">
         <div>
           <h2 className="text-2xl md:text-3xl font-semibold tracking-tight">
-            Skills
+            {t("home.skillsPreview.title")}
           </h2>
           <p className="mt-2 text-muted-foreground">
-            A quick look at what I use and what I’m good at.
+            {t("home.skillsPreview.subtitle")}
           </p>
         </div>
 
         <Button asChild variant="outline" className="rounded-2xl glass">
-          <Link href="/skills">View all</Link>
+          <Link href="/skills">{t("home.skillsPreview.viewAll")}</Link>
         </Button>
       </div>
 
@@ -64,7 +67,10 @@ export default function SkillsPreview() {
         className="mt-8 grid gap-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
       >
         {preview.map((s, i) => (
-          <motion.div key={`${s.category}-${s.name}`} variants={fadeIn("up", i * 0.02)}>
+          <motion.div
+            key={`${s.category}-${s.name}`}
+            variants={fadeIn("up", i * 0.02)}
+          >
             <Card className="hover:-translate-y-1">
               <CardContent className="p-5">
                 <div className="flex items-center justify-between">
@@ -83,7 +89,7 @@ export default function SkillsPreview() {
                 </div>
 
                 <p className="mt-2 text-xs text-muted-foreground">
-                  Level {s.level}/10
+                  {t("home.skillsPreview.level")} {s.level}/10
                 </p>
               </CardContent>
             </Card>

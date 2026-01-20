@@ -5,8 +5,11 @@ import { fadeIn } from "@/lib/motion";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Send } from "lucide-react";
+import { useTranslation } from "@/hooks/use-translation";
 
 export default function ContactPreview() {
+  const { t } = useTranslation();
+
   return (
     <section className="mx-auto max-w-6xl px-4 py-16 md:py-20">
       {/* Title */}
@@ -18,7 +21,7 @@ export default function ContactPreview() {
         viewport={{ once: true, amount: 0.25 }}
       >
         <h2 className="text-3xl md:text-4xl font-semibold tracking-tight">
-          Get In Touch
+          {t("home.contactPreview.title")}
         </h2>
         <div className="mt-2 h-1 w-24 rounded-full bg-primary" />
       </motion.div>
@@ -34,8 +37,7 @@ export default function ContactPreview() {
           viewport={{ once: true, amount: 0.25 }}
         >
           <p className="max-w-md text-sm md:text-base text-muted-foreground leading-relaxed">
-            Interested in working together or have a question? Feel free to
-            reach out!
+            {t("home.contactPreview.description")}
           </p>
         </motion.div>
 
@@ -49,14 +51,11 @@ export default function ContactPreview() {
         >
           <Card className="glass w-full max-w-xl">
             <CardContent className="p-6 md:p-7">
-              <form
-                onSubmit={(e) => e.preventDefault()}
-                className="space-y-4"
-              >
+              <form onSubmit={(e) => e.preventDefault()} className="space-y-4">
                 <div>
                   <input
                     type="text"
-                    placeholder="Your Name"
+                    placeholder={t("home.contactPreview.namePlaceholder")}
                     className="h-11 w-full rounded-xl border border-border bg-background/40 px-4 text-sm outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/20"
                   />
                 </div>
@@ -64,21 +63,21 @@ export default function ContactPreview() {
                 <div>
                   <input
                     type="email"
-                    placeholder="Your Email"
+                    placeholder={t("home.contactPreview.emailPlaceholder")}
                     className="h-11 w-full rounded-xl border border-border bg-background/40 px-4 text-sm outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/20"
                   />
                 </div>
 
                 <div>
                   <textarea
-                    placeholder="Your Message"
+                    placeholder={t("home.contactPreview.messagePlaceholder")}
                     rows={7}
                     className="w-full resize-none rounded-xl border border-border bg-background/40 px-4 py-3 text-sm outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/20"
                   />
                 </div>
 
                 <Button type="submit" className="w-full rounded-2xl">
-                  Send Message
+                  {t("home.contactPreview.send")}
                   <Send className="ml-2 h-4 w-4" />
                 </Button>
               </form>

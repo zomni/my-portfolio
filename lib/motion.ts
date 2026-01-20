@@ -2,7 +2,7 @@ import type { Variants } from "framer-motion";
 
 export const fadeIn = (
   direction: "up" | "down" | "left" | "right" = "up",
-  delay = 0
+  delay = 0,
 ): Variants => ({
   hidden: {
     opacity: 0,
@@ -17,7 +17,10 @@ export const fadeIn = (
   },
 });
 
-export const stagger = (staggerChildren = 0.08, delayChildren = 0): Variants => ({
+export const stagger = (
+  staggerChildren = 0.08,
+  delayChildren = 0,
+): Variants => ({
   hidden: {},
   show: { transition: { staggerChildren, delayChildren } },
 });

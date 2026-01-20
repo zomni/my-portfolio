@@ -41,9 +41,7 @@ export default function RootLayout({
           <LanguageProvider>
             <div className="relative min-h-screen flex flex-col">
               <Navbar />
-              <main className="flex-1 pt-16">
-                {children}
-              </main>
+              <main className="flex-1 pt-16">{children}</main>
               <Footer />
             </div>
           </LanguageProvider>

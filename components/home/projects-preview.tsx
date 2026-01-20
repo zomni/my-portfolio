@@ -8,6 +8,7 @@ import { ExternalLink, Github, ArrowRight } from "lucide-react";
 import { fadeIn } from "@/lib/motion";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { useTranslation } from "@/hooks/use-translation";
 
 type Project = {
   title: string;
@@ -18,37 +19,36 @@ type Project = {
   repoUrl?: string;
 };
 
-const featuredProjects: Project[] = [
-  {
-    title: "IT Support and Diagnostic System",
-    description:
-      "Workflow for diagnosis, logging, and incident tracking, oriented towards technical support and efficient fault resolution.",
-    image: "/images/projects/project-1.jpg",
-    tags: ["IT Support", "Networks", "Windows", "AnyDesk"],
-    demoUrl: "#",
-    repoUrl: "https://github.com/zomni",
-  },
-  {
-    title: "RESTful API with Node.js / Java",
-    description:
-      "REST services with controllers, DTOs, and JWT authentication, integrating external API consumption and best practices.",
-    image: "/images/projects/project-2.jpg",
-    tags: ["Node.js", "Express", "Java", "Spring Boot"],
-    demoUrl: "#",
-    repoUrl: "https://github.com/zomni",
-  },
-  {
-    title: "Angular + Ionic Frontend",
-    description:
-      "Interfaces with reactive forms, routes, and roles. Hybrid app with features like geolocation and QR scanning.",
-    image: "/images/projects/project-3.jpg",
-    tags: ["Angular", "Ionic", "Roles", "UI"],
-    demoUrl: "#",
-    repoUrl: "https://github.com/zomni",
-  },
-];
-
 export default function ProjectPreview() {
+  const { t } = useTranslation();
+
+  const featuredProjects: Project[] = [
+    {
+      title: t("home.projectsPreview.p1.title"),
+      description: t("home.projectsPreview.p1.description"),
+      image: "/images/projects/project-1.jpg",
+      tags: ["IT Support", "Networks", "Windows", "AnyDesk"],
+      demoUrl: "#",
+      repoUrl: "https://github.com/zomni",
+    },
+    {
+      title: t("home.projectsPreview.p2.title"),
+      description: t("home.projectsPreview.p2.description"),
+      image: "/images/projects/project-2.jpg",
+      tags: ["Node.js", "Express", "Java", "Spring Boot"],
+      demoUrl: "#",
+      repoUrl: "https://github.com/zomni",
+    },
+    {
+      title: t("home.projectsPreview.p3.title"),
+      description: t("home.projectsPreview.p3.description"),
+      image: "/images/projects/project-3.jpg",
+      tags: ["Angular", "Ionic", "Roles", "UI"],
+      demoUrl: "#",
+      repoUrl: "https://github.com/zomni",
+    },
+  ];
+
   return (
     <section className="mx-auto max-w-6xl px-4 py-16 md:py-20">
       <motion.div
@@ -58,11 +58,11 @@ export default function ProjectPreview() {
         viewport={{ once: true, amount: 0.25 }}
       >
         <h2 className="text-3xl md:text-4xl font-semibold tracking-tight">
-          Featured Projects
+          {t("home.projectsPreview.title")}
         </h2>
         <div className="mt-2 h-1 w-24 rounded-full bg-primary" />
         <p className="mt-6 max-w-2xl text-sm md:text-base text-muted-foreground leading-relaxed">
-          Explore some of my recent projects and technical work.
+          {t("home.projectsPreview.intro")}
         </p>
       </motion.div>
 
@@ -120,7 +120,7 @@ export default function ProjectPreview() {
                     >
                       <Link href={project.demoUrl || "#"}>
                         <ExternalLink className="mr-2 h-4 w-4" />
-                        Demo
+                        {t("home.projectsPreview.demo")}
                       </Link>
                     </Button>
 
@@ -132,7 +132,7 @@ export default function ProjectPreview() {
                     >
                       <Link href={project.repoUrl || "#"} target="_blank">
                         <Github className="mr-2 h-4 w-4" />
-                        Repo
+                        {t("home.projectsPreview.repo")}
                       </Link>
                     </Button>
                   </div>
@@ -153,7 +153,7 @@ export default function ProjectPreview() {
       >
         <Button asChild className="rounded-2xl px-6">
           <Link href="/projects">
-            View all projects
+            {t("home.projectsPreview.viewAll")}
             <ArrowRight className="ml-2 h-4 w-4" />
           </Link>
         </Button>

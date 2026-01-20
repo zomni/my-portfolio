@@ -8,8 +8,11 @@ import * as THREE from "three";
 
 import { Button } from "@/components/ui/button";
 import { fadeIn, stagger } from "@/lib/motion";
+import { useTranslation } from "@/hooks/use-translation";
 
 export default function HeroSection() {
+  const { t } = useTranslation();
+
   const vantaRef = useRef<HTMLDivElement>(null);
 
   type VantaEffect = { destroy: () => void };
@@ -93,7 +96,7 @@ export default function HeroSection() {
             variants={fadeIn("up", 0)}
             className="text-base text-3xl md:text-lg lg:text-4xl font-bold mb-4 tracking-wide text-primary"
           >
-            Computer Science Engineering Student
+            {t("home.hero.role")}
           </motion.p>
 
           <motion.h1
@@ -146,7 +149,7 @@ export default function HeroSection() {
               max-w-2xl mx-auto
             "
           >
-            A showcase of my projects, skills, and achievements in the field of engineering.
+            {t("home.hero.description")}
           </motion.p>
 
           <motion.div
@@ -155,13 +158,13 @@ export default function HeroSection() {
           >
             <Button asChild className="rounded-2xl px-6">
               <Link href="/projects">
-                View Projects <ArrowRight className="ml-2 h-4 w-4" />
+                {t("home.hero.ctaProjects")} <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>
 
             <Button asChild variant="outline" className="rounded-2xl px-6 glass">
               <a href="#" download>
-                Download CV <FileDown className="ml-2 h-4 w-4" />
+                {t("home.hero.ctaCV")} <FileDown className="ml-2 h-4 w-4" />
               </a>
             </Button>
           </motion.div>

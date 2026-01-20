@@ -80,7 +80,7 @@ export default function Navbar() {
       className={cn(
         "fixed top-0 left-0 right-0 z-50 border-b",
         "bg-background/50 backdrop-blur-xl",
-        scrolled ? "shadow-sm border-border/70" : "border-border/50"
+        scrolled ? "shadow-sm border-border/70" : "border-border/50",
       )}
     >
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4">
@@ -117,7 +117,7 @@ export default function Navbar() {
                     "relative text-sm font-semibold transition-colors",
                     active
                       ? "text-foreground"
-                      : "text-foreground/70 hover:text-foreground"
+                      : "text-foreground/70 hover:text-foreground",
                   )}
                 >
                   {labels[lang][item.key]}
@@ -128,7 +128,7 @@ export default function Navbar() {
                   className={cn(
                     "pointer-events-none absolute left-0 right-0 -bottom-2 h-[2px] rounded-full",
                     "bg-[#F7B801]/0 transition-colors duration-200",
-                    !active && "group-hover:bg-[#F7B801]/70"
+                    !active && "group-hover:bg-[#F7B801]/70",
                   )}
                 />
 
@@ -138,7 +138,11 @@ export default function Navbar() {
                     <motion.span
                       layoutId="nav-underline"
                       className="absolute left-0 right-0 -bottom-2 h-[2px] rounded-full bg-[#F7B801]"
-                      transition={{ type: "spring", stiffness: 500, damping: 30 }}
+                      transition={{
+                        type: "spring",
+                        stiffness: 500,
+                        damping: 30,
+                      }}
                     />
                   )}
                 </AnimatePresence>
@@ -190,7 +194,7 @@ export default function Navbar() {
                             "text-lg",
                             pathname === item.href
                               ? "text-foreground"
-                              : "text-muted-foreground"
+                              : "text-muted-foreground",
                           )}
                         >
                           {labels[lang][item.key]}

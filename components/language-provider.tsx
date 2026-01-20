@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useContext, useMemo, useState } from "react";
+import { createContext, useContext, useEffect, useMemo, useState } from "react";
 
 export type Lang = "en" | "es";
 
@@ -12,14 +12,40 @@ type LanguageContextValue = {
 
 const LanguageContext = createContext<LanguageContextValue | null>(null);
 
+const STORAGE_KEY = "portfolio_lang";
+
+function readInitialLang(): Lang {
+  // Esto corre en el cliente al montar el estado
+  try {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if (saved === "en" || saved === "es") return saved;
+  } catch {
+    // ignore
+  }
+  return "en";
+}
+
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
-  const [lang, setLang] = useState<Lang>("en");
+  // ✅ Inicialización desde localStorage SIN useEffect
+  const [lang, setLangState] = useState<Lang>(readInitialLang);
+
+  // ✅ Este effect solo sincroniza hacia afuera (persistencia + html lang)
+  useEffect(() => {
+    try {
+      localStorage.setItem(STORAGE_KEY, lang);
+    } catch {
+      // ignore
+    }
+    document.documentElement.lang = lang;
+  }, [lang]);
+
+  const setLang = (next: Lang) => setLangState(next);
 
   const value = useMemo(
     () => ({
       lang,
       setLang,
-      toggleLang: () => setLang((prev) => (prev === "en" ? "es" : "en")),
+      toggleLang: () => setLangState((prev) => (prev === "en" ? "es" : "en")),
     }),
     [lang]
   );
@@ -33,8 +59,6 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
 
 export function useLanguage() {
   const ctx = useContext(LanguageContext);
-  if (!ctx) {
-    throw new Error("useLanguage must be used within a LanguageProvider");
-  }
+  if (!ctx) throw new Error("useLanguage must be used within a LanguageProvider");
   return ctx;
 }

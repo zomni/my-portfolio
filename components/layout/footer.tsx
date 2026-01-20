@@ -12,48 +12,51 @@ import {
   Instagram,
 } from "lucide-react";
 
+import { useTranslation } from "@/hooks/use-translation";
+
 export default function Footer() {
+  const { t } = useTranslation();
   const year = new Date().getFullYear();
 
   const socialLinks = [
-    { label: "Phone", href: "tel:+56996742085", Icon: Phone, external: false },
-    { label: "Email", href: "mailto:paolovilches@hotmail.com", Icon: Mail, external: false },
+    { label: t("footer.socials.phone"), href: "tel:+56996742085", Icon: Phone, external: false },
+    { label: t("footer.socials.email"), href: "mailto:paolovilches@hotmail.com", Icon: Mail, external: false },
     {
-      label: "LinkedIn",
+      label: t("footer.socials.linkedin"),
       href: "https://www.linkedin.com/in/paolo-vilches",
       Icon: Linkedin,
       external: true,
     },
-    { label: "GitHub", href: "https://github.com/zomni", Icon: Github, external: true },
-    { label: "Message", href: "/contact", Icon: MessageSquare, external: false },
-    { label: "Twitter", href: "#", Icon: Twitter, external: true },
-    { label: "Facebook", href: "#", Icon: Facebook, external: true },
-    { label: "Instagram", href: "#", Icon: Instagram, external: true },
+    { label: t("footer.socials.github"), href: "https://github.com/zomni", Icon: Github, external: true },
+    { label: t("footer.socials.message"), href: "/contact", Icon: MessageSquare, external: false },
+    { label: t("footer.socials.twitter"), href: "#", Icon: Twitter, external: true },
+    { label: t("footer.socials.facebook"), href: "#", Icon: Facebook, external: true },
+    { label: t("footer.socials.instagram"), href: "#", Icon: Instagram, external: true },
   ];
 
   const columns = [
     {
-      title: "About",
+      title: t("footer.columns.about.title"),
       links: [
-        { label: "About Me", href: "/about" },
-        { label: "Education", href: "/education" },
-        { label: "Skills", href: "/skills" },
+        { label: t("footer.columns.about.aboutMe"), href: "/about" },
+        { label: t("footer.columns.about.education"), href: "/education" },
+        { label: t("footer.columns.about.skills"), href: "/skills" },
       ],
     },
     {
-      title: "Work",
+      title: t("footer.columns.work.title"),
       links: [
-        { label: "Experience", href: "/experience" },
-        { label: "Projects", href: "/projects" },
-        { label: "Certificates", href: "/certificates" },
+        { label: t("footer.columns.work.experience"), href: "/experience" },
+        { label: t("footer.columns.work.projects"), href: "/projects" },
+        { label: t("footer.columns.work.certificates"), href: "/certificates" },
       ],
     },
     {
-      title: "Connect",
+      title: t("footer.columns.connect.title"),
       links: [
-        { label: "Contact", href: "/contact" },
-        { label: "GitHub", href: "https://github.com/zomni", external: true },
-        { label: "LinkedIn", href: "https://www.linkedin.com/in/paolo-vilches", external: true },
+        { label: t("footer.columns.connect.contact"), href: "/contact" },
+        { label: t("footer.columns.connect.github"), href: "https://github.com/zomni", external: true },
+        { label: t("footer.columns.connect.linkedin"), href: "https://www.linkedin.com/in/paolo-vilches", external: true },
       ],
     },
   ];
@@ -69,12 +72,11 @@ export default function Footer() {
             {/* Izquierda */}
             <div className="md:col-span-5">
               <h3 className="text-xl font-semibold tracking-tight text-primary">
-                Portfolio
+                {t("footer.brand")}
               </h3>
 
               <p className="mt-4 max-w-sm text-sm leading-relaxed text-muted-foreground">
-                A professional portfolio showcasing my skills, projects, and achievements
-                in software engineering and IT.
+                {t("footer.description")}
               </p>
 
               {/* Iconos redes sociales grid */}
@@ -90,7 +92,6 @@ export default function Footer() {
                     border-white/20 bg-white/10 text-white/80 transition hover:-translate-y-1 
                     hover:border-primary hover:bg-primary/20 hover:text-white hover:shadow-lg 
                     hover:shadow-primary/20"
-
                   >
                     <Icon className="h-5 w-5" />
                   </Link>
@@ -133,12 +134,16 @@ export default function Footer() {
           {/* Bottom bar */}
           <div className="mt-8 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
             <p className="text-sm text-muted-foreground">
-              © {year} Engineering Portfolio. All rights reserved.
+              © {year} {t("footer.bottom.copyrightLeft")}
             </p>
 
             <div className="flex items-center gap-6">
-              <span className="text-sm text-muted-foreground">Privacy Policy</span>
-              <span className="text-sm text-muted-foreground">Terms of Service</span>
+              <span className="text-sm text-muted-foreground">
+                {t("footer.bottom.privacy")}
+              </span>
+              <span className="text-sm text-muted-foreground">
+                {t("footer.bottom.terms")}
+              </span>
             </div>
           </div>
         </div>
